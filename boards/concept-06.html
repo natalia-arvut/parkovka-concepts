@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Концепция 06 — Издание</title>
+<style>
+@import url('../fonts/fonts.css');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1440px;height:1400px;overflow:hidden;background:#EFECE4;color:#1A1A18;
+  font-family:'Golos Text',sans-serif}
+.board{padding:48px 56px;height:100%;display:flex;flex-direction:column;gap:28px}
+
+.b-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid #D8D4C8;padding-bottom:18px}
+.b-head .tag{font-size:13px;letter-spacing:.14em;color:#8F8B7E;font-weight:600}
+.b-head .name{font-family:'Playfair Display',serif;font-size:21px;color:#C73A1D;font-weight:800;letter-spacing:.02em}
+
+.browser{background:#F7F5EF;border:1px solid #DBD7CB;border-radius:14px;overflow:hidden;
+  box-shadow:0 30px 70px rgba(46,42,30,.14)}
+.browser .bar{height:40px;background:#EFECE4;border-bottom:1px solid #DBD7CB;
+  display:flex;align-items:center;gap:8px;padding:0 18px}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#D8D4C8;display:block}
+.browser .bar .url{margin-left:14px;font-size:12px;color:#8F8B7E;background:#E6E2D6;border-radius:6px;
+  padding:5px 14px;font-weight:600}
+
+.hero{position:relative;height:700px;background:#F7F5EF;display:flex;flex-direction:column}
+.masthead{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;
+  border-bottom:2px solid #1A1A18}
+.m-date{font-size:12px;letter-spacing:.14em;color:#8F8B7E;font-weight:600;width:220px}
+.m-logo{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;letter-spacing:.01em}
+.m-logo i{font-style:italic;color:#C73A1D}
+.m-right{display:flex;gap:18px;width:220px;justify-content:flex-end;font-size:13px;font-weight:700}
+.m-right span{border:1.5px solid #1A1A18;padding:8px 16px;border-radius:99px}
+.m-right span.f{background:#1A1A18;color:#F7F5EF}
+.rubrics{display:flex;justify-content:center;gap:34px;padding:14px 0;border-bottom:1px solid #D8D4C8;
+  font-size:13px;letter-spacing:.12em;font-weight:600;color:#5C594E;text-transform:uppercase}
+.rubrics span.act{color:#C73A1D}
+.hero-in{flex:1;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;padding:38px 48px}
+.h-left{display:flex;flex-direction:column;justify-content:center}
+.h-kicker{font-size:12.5px;letter-spacing:.2em;color:#C73A1D;font-weight:700;margin-bottom:18px}
+h1{font-family:'Playfair Display',serif;font-weight:800;font-size:53px;line-height:1.1;max-width:20ch}
+h1 i{font-style:italic;color:#C73A1D}
+.h-sub{margin-top:20px;font-size:17px;line-height:1.65;color:#4A473D;max-width:48ch}
+.h-byline{margin-top:22px;font-size:13px;color:#8F8B7E;letter-spacing:.04em}
+.h-btns{display:flex;gap:14px;margin-top:26px}
+.btn-a{background:#1A1A18;color:#F7F5EF;font-weight:600;font-size:15px;padding:15px 28px;border-radius:99px}
+.btn-b{border:1.5px solid #1A1A18;color:#1A1A18;font-size:15px;font-weight:600;padding:15px 26px;border-radius:99px}
+.h-photo{position:relative;display:flex;flex-direction:column}
+.h-photo .ph{flex:1;overflow:hidden;border-radius:4px}
+.h-photo img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04)}
+.h-photo .cap{display:flex;justify-content:space-between;font-size:11.5px;color:#8F8B7E;
+  letter-spacing:.06em;padding-top:10px;border-top:1px solid #1A1A18;margin-top:12px}
+
+.lower{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1}
+.mini{background:#F7F5EF;border:1px solid #DBD7CB;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.mini .m-cap{font-size:11px;letter-spacing:.14em;color:#8F8B7E;font-weight:700;
+  padding:12px 18px;border-bottom:1px solid #DBD7CB}
+.mini .m-body{padding:20px 18px;flex:1}
+.m-body h4{font-family:'Playfair Display',serif;font-size:19px;font-weight:800;margin-bottom:13px}
+.art{padding:12px 0;border-bottom:1px solid #E2DFD3;display:flex;gap:12px;align-items:baseline}
+.art:last-child{border-bottom:none}
+.art .n{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:#C73A1D;font-style:italic;flex:none;width:26px}
+.art b{display:block;font-size:14.5px;font-weight:600;line-height:1.4}
+.art span{font-size:12px;color:#8F8B7E;letter-spacing:.04em}
+.quote{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.5;color:#1A1A18}
+.quote i{color:#C73A1D}
+.q-src{margin-top:12px;font-size:12.5px;color:#8F8B7E;letter-spacing:.06em}
+.q-rule{width:54px;height:3px;background:#C73A1D;margin-bottom:16px}
+
+.dna .m-body{display:flex;flex-direction:column;gap:16px}
+.chips{display:flex;gap:8px}
+.chip{flex:1;height:52px;border-radius:8px;position:relative;border:1px solid #DBD7CB}
+.chip span{position:absolute;left:8px;bottom:6px;font-size:9.5px;color:#8F8B7E;font-weight:600}
+.type-spec .big{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;line-height:1.1}
+.type-spec .big i{font-style:italic;color:#C73A1D}
+.type-spec .small{font-size:13px;color:#5C594E;margin-top:7px;line-height:1.5}
+.type-spec .accent{font-size:12px;color:#C73A1D;margin-top:7px;font-weight:700;letter-spacing:.12em}
+.motion{border-top:1px dashed #D8D4C8;padding-top:14px}
+.motion .m-t{font-size:11px;color:#8F8B7E;letter-spacing:.14em;margin-bottom:9px;font-weight:700}
+.motion ul{list-style:none;font-size:13px;color:#5C594E;line-height:1.75}
+.motion li::before{content:"→ ";color:#C73A1D}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="b-head">
+    <div class="tag">ПАРКОВКА.ONLINE&ensp;·&ensp;РЕДИЗАЙН&ensp;·&ensp;КОНЦЕПЦИЯ 06 / 06</div>
+    <div class="name">Издание</div>
+  </div>
+
+  <div class="browser">
+    <div class="bar"><i></i><i></i><i></i><span class="url">parkovka-online.ru</span></div>
+    <div class="hero">
+      <div class="masthead">
+        <div class="m-date">МОСКВА · 06.07.2026</div>
+        <div class="m-logo">Парковка<i>.online</i></div>
+        <div class="m-right"><span>Войти</span><span class="f">Оплатить</span></div>
+      </div>
+      <div class="rubrics">
+        <span class="act">Платформа</span><span>Возможности</span><span>Тарифы</span><span>Кейсы</span><span>Блог</span><span>FAQ</span>
+      </div>
+      <div class="hero-in">
+        <div class="h-left">
+          <div class="h-kicker">ГЛАВНАЯ ТЕМА</div>
+          <h1>Интеллект вместо <i>железа</i></h1>
+          <div class="h-sub">Платная парковка больше не начинается с покупки паркомата. Она начинается с камеры, нейросети и облака — и стоит в десять раз дешевле. Рассказываем, как работает система, которой не нужно железо.</div>
+          <div class="h-byline">ПЛАТФОРМА · ЧИТАТЬ 4 МИН · ОБНОВЛЕНО СЕГОДНЯ</div>
+          <div class="h-btns"><div class="btn-a">Заказать презентацию</div><div class="btn-b">Читать о платформе</div></div>
+        </div>
+        <div class="h-photo">
+          <div class="ph"><img src="../img/garage-bw.png" alt=""></div>
+          <div class="cap"><span>ФОТО: ПАРКИНГ КАК АРХИТЕКТУРА</span><span>№ 01</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="mini">
+      <div class="m-cap">РАЗДЕЛ · БЛОГ (ОГЛАВЛЕНИЕ)</div>
+      <div class="m-body">
+        <h4>В этом выпуске</h4>
+        <div class="art"><div class="n">01</div><div><b>Смета честной парковки: облако против паркомата</b><span>ЭКОНОМИКА · 12 МИН</span></div></div>
+        <div class="art"><div class="n">02</div><div><b>Как нейросеть читает номер за долю секунды</b><span>ТЕХНОЛОГИИ · 8 МИН</span></div></div>
+        <div class="art"><div class="n">03</div><div><b>Дневник запуска: парковка ТЦ за один день</b><span>КЕЙС · 6 МИН</span></div></div>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="m-cap">РЕДАКЦИОННАЯ ВРЕЗКА</div>
+      <div class="m-body">
+        <div class="q-rule"></div>
+        <div class="quote">«Сайт-издание продаёт экспертизу: каждый материал блога отвечает на вопрос владельца парковки — и заканчивается <i>кнопкой презентации</i>.»</div>
+        <div class="q-src">РОЛЬ БЛОГА В КОНЦЕПЦИИ</div>
+      </div>
+    </div>
+    <div class="mini dna">
+      <div class="m-cap">ДНК КОНЦЕПЦИИ</div>
+      <div class="m-body">
+        <div class="chips">
+          <div class="chip" style="background:#F7F5EF"><span>#F7F5EF</span></div>
+          <div class="chip" style="background:#1A1A18"><span style="color:#F7F5EF">#1A1A18</span></div>
+          <div class="chip" style="background:#C73A1D"><span style="color:#fff">#C73A1D</span></div>
+          <div class="chip" style="background:#D8D4C8"><span style="color:#1A1A18">#D8D4C8</span></div>
+        </div>
+        <div class="type-spec">
+          <div class="big">Playfair <i>Display</i></div>
+          <div class="small">Golos Text — текст и навигация. Бумажный фон, чёрно-белая архитектурная фотография паркингов, номера материалов курсивом — сайт превращается в отраслевое издание, где блог — главный инструмент продаж.</div>
+          <div class="accent">EDITORIAL · КОНТЕНТ-ПЛАТФОРМА</div>
+        </div>
+        <div class="motion">
+          <div class="m-t">MOTION</div>
+          <ul>
+            <li>заголовки проявляются построчно, как вёрстка полосы</li>
+            <li>подчёркивания-штрихи рисуются под ссылками</li>
+            <li>фото медленно «дышит» зумом при скролле</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

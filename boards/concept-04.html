@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Концепция 04 — Разметка</title>
+<style>
+@import url('../fonts/fonts.css');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1440px;height:1400px;overflow:hidden;background:#111111;color:#F2F0EA;
+  font-family:'Golos Text',sans-serif}
+.board{padding:48px 56px;height:100%;display:flex;flex-direction:column;gap:28px}
+
+.b-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid #2A2A28;padding-bottom:18px}
+.b-head .tag{font-size:13px;letter-spacing:.14em;color:#6E6C64;font-weight:600}
+.b-head .name{font-family:'Oswald',sans-serif;font-size:20px;color:#FFD400;font-weight:700;letter-spacing:.12em}
+
+.browser{background:#161616;border:1px solid #2A2A28;border-radius:14px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.55)}
+.browser .bar{height:40px;background:#1B1B1A;border-bottom:1px solid #2A2A28;
+  display:flex;align-items:center;gap:8px;padding:0 18px}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#2E2E2C;display:block}
+.browser .bar .url{margin-left:14px;font-size:12px;color:#6E6C64;background:#111;border-radius:6px;
+  padding:5px 14px;font-weight:600}
+
+.hero{position:relative;height:700px;display:flex;flex-direction:column;overflow:hidden;background:#111}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:20% 50%;opacity:.5;
+  filter:contrast(1.08) brightness(.9)}
+.hero .bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(17,17,17,.94) 0%,rgba(17,17,17,.78) 45%,rgba(17,17,17,.25) 100%)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 44px;position:relative;z-index:2;
+  border-bottom:1px dashed #3A3A36}
+.logo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:.06em;color:#fff;
+  display:flex;align-items:center;gap:10px}
+.logo .p{width:30px;height:30px;background:#FFD400;color:#111;display:flex;align-items:center;justify-content:center;
+  font-size:19px;border-radius:4px}
+.nav .links{display:flex;gap:26px;font-size:13.5px;color:#B9B6AC;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.nav .cta-s{font-family:'Oswald',sans-serif;font-size:13.5px;color:#111;background:#FFD400;padding:10px 20px;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hero-in{flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 44px 30px;position:relative;z-index:2}
+.h-eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.22em;color:#FFD400;
+  font-weight:700;margin-bottom:20px}
+.h-eyebrow .dash{width:56px;height:4px;background:repeating-linear-gradient(90deg,#FFD400 0 12px,transparent 12px 20px)}
+h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:78px;line-height:1.02;color:#fff;
+  text-transform:uppercase;letter-spacing:.01em;max-width:15ch}
+h1 .y{color:#FFD400}
+.h-sub{margin-top:22px;font-size:17.5px;line-height:1.6;color:#CFCCC2;max-width:52ch}
+.h-btns{display:flex;gap:0;margin-top:34px}
+.btn-a{font-family:'Oswald',sans-serif;background:#FFD400;color:#111;font-weight:700;font-size:16px;
+  letter-spacing:.1em;text-transform:uppercase;padding:18px 34px}
+.btn-b{font-family:'Oswald',sans-serif;border:2px solid #FFD400;color:#FFD400;font-size:16px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:16px 32px;margin-left:14px}
+.ticker{position:absolute;left:0;right:0;bottom:0;background:#FFD400;color:#111;z-index:3;
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+  padding:12px 0;white-space:nowrap;overflow:hidden}
+.ticker span{margin:0 26px}
+
+.lower{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1}
+.mini{background:#161616;border:1px solid #2A2A28;overflow:hidden;display:flex;flex-direction:column}
+.mini .m-cap{font-size:11px;letter-spacing:.16em;color:#6E6C64;font-weight:700;
+  padding:12px 18px;border-bottom:1px dashed #3A3A36}
+.mini .m-body{padding:20px 18px;flex:1}
+.m-body h4{font-family:'Oswald',sans-serif;font-size:19px;color:#fff;font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.sign{display:flex;align-items:center;gap:14px;border:1px solid #2E2E2C;padding:13px 14px;margin-bottom:9px}
+.sign .sq{width:38px;height:38px;flex:none;background:#FFD400;color:#111;display:flex;align-items:center;
+  justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;border-radius:4px}
+.sign .sq.o{background:transparent;border:2px solid #FFD400;color:#FFD400}
+.sign b{display:block;font-size:14.5px;color:#F2F0EA;font-weight:600}
+.sign span{font-size:12.5px;color:#8B887E}
+.bpost{border:1px solid #2E2E2C;padding:14px;margin-bottom:10px;position:relative}
+.bpost::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:repeating-linear-gradient(180deg,#FFD400 0 10px,transparent 10px 17px)}
+.bpost .bp-tag{font-family:'Oswald',sans-serif;font-size:11px;color:#FFD400;letter-spacing:.18em;font-weight:700}
+.bpost h5{font-size:14.5px;color:#F2F0EA;font-weight:600;line-height:1.4;margin-top:7px}
+.bpost .bp-meta{font-size:11.5px;color:#6E6C64;margin-top:7px;letter-spacing:.04em}
+
+.dna .m-body{display:flex;flex-direction:column;gap:16px}
+.chips{display:flex;gap:8px}
+.chip{flex:1;height:52px;position:relative;border:1px solid #2E2E2C}
+.chip span{position:absolute;left:8px;bottom:6px;font-size:9.5px;color:#8B887E;font-weight:600}
+.type-spec .big{font-family:'Oswald',sans-serif;font-size:30px;color:#fff;font-weight:700;
+  text-transform:uppercase;letter-spacing:.03em;line-height:1.1}
+.type-spec .small{font-size:13px;color:#B9B6AC;margin-top:7px;line-height:1.5}
+.type-spec .accent{font-family:'Oswald',sans-serif;font-size:12.5px;color:#FFD400;margin-top:7px;
+  font-weight:700;letter-spacing:.16em}
+.motion{border-top:1px dashed #3A3A36;padding-top:14px}
+.motion .m-t{font-size:11px;color:#6E6C64;letter-spacing:.16em;margin-bottom:9px;font-weight:700}
+.motion ul{list-style:none;font-size:13px;color:#B9B6AC;line-height:1.75}
+.motion li::before{content:"— ";color:#FFD400;font-weight:700}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="b-head">
+    <div class="tag">ПАРКОВКА.ONLINE&ensp;·&ensp;РЕДИЗАЙН&ensp;·&ensp;КОНЦЕПЦИЯ 04 / 06</div>
+    <div class="name">РАЗМЕТКА</div>
+  </div>
+
+  <div class="browser">
+    <div class="bar"><i></i><i></i><i></i><span class="url">parkovka-online.ru</span></div>
+    <div class="hero">
+      <div class="bg"><img src="../img/asphalt.png" alt=""></div>
+      <div class="nav">
+        <div class="logo"><span class="p">P</span>ПАРКОВКА.ONLINE</div>
+        <div class="links"><span>Возможности</span><span>Тарифы</span><span>Кейсы</span><span>Блог</span></div>
+        <div class="cta-s">Оплатить парковку</div>
+      </div>
+      <div class="hero-in">
+        <div class="h-eyebrow"><span class="dash"></span>ОБЛАЧНАЯ СИСТЕМА ПЛАТНОЙ ПАРКОВКИ</div>
+        <h1>Интеллект<br>вместо <span class="y">железа</span></h1>
+        <div class="h-sub">Асфальт, разметка и ни одного паркомата. Нейросеть распознаёт номера, деньги приходят на счёт — вся система живёт в облаке и стоит в 10 раз дешевле железа.</div>
+        <div class="h-btns"><div class="btn-a">Заказать презентацию</div><div class="btn-b">Тарифы</div></div>
+      </div>
+      <div class="ticker"><span>Без паркоматов</span>·<span>Без билетов</span>·<span>Без кассира</span>·<span>Запуск за 1 день</span>·<span>Без паркоматов</span>·<span>Без билетов</span>·<span>Без кассира</span></div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="mini">
+      <div class="m-cap">ВНУТРЕННЯЯ СТРАНИЦА · ВОЗМОЖНОСТИ</div>
+      <div class="m-body">
+        <h4>Знаки нового движения</h4>
+        <div class="sign"><div class="sq">₽</div><div><b>Безналичная оплата</b><span>QR, ссылки, Telegram-бот — без кассы</span></div></div>
+        <div class="sign"><div class="sq o">№</div><div><b>Распознавание номеров</b><span>нейросеть читает номер, марку, тип</span></div></div>
+        <div class="sign"><div class="sq">24</div><div><b>Удалённая эксплуатация</b><span>операторы следят за парковкой 24/7</span></div></div>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="m-cap">РАЗДЕЛ · БЛОГ</div>
+      <div class="m-body">
+        <div class="bpost"><div class="bp-tag">ЭКОНОМИКА</div><h5>Паркомат против облака: смета, которую скрывают продавцы железа</h5><div class="bp-meta">12 МИН · ГАЙД</div></div>
+        <div class="bpost"><div class="bp-tag">ТЕХНОЛОГИИ</div><h5>Что видит камера, когда машина подъезжает к шлагбауму</h5><div class="bp-meta">8 МИН · ПОД КАПОТОМ</div></div>
+        <div class="bpost"><div class="bp-tag">КЕЙС</div><h5>Один день на запуск: как это выглядит по часам</h5><div class="bp-meta">6 МИН · КЕЙСЫ</div></div>
+      </div>
+    </div>
+    <div class="mini dna">
+      <div class="m-cap">ДНК КОНЦЕПЦИИ</div>
+      <div class="m-body">
+        <div class="chips">
+          <div class="chip" style="background:#111111"><span>#111111</span></div>
+          <div class="chip" style="background:#FFD400"><span style="color:#111">#FFD400</span></div>
+          <div class="chip" style="background:#F2F0EA"><span style="color:#111">#F2F0EA</span></div>
+          <div class="chip" style="background:#6E6C64"><span style="color:#fff">#6E6C64</span></div>
+        </div>
+        <div class="type-spec">
+          <div class="big">Oswald · 700</div>
+          <div class="small">Golos Text — текст. Язык улицы: жёлтая краска разметки, пунктирные линии, таблички-знаки. Реальная фактура асфальта вместо стоковых иллюстраций.</div>
+          <div class="accent">ДОРОЖНАЯ ГРАФИКА · БРУТАЛЬНО · ЧЕСТНО</div>
+        </div>
+        <div class="motion">
+          <div class="m-t">MOTION</div>
+          <ul>
+            <li>разметка «прорисовывается» линией при скролле</li>
+            <li>бегущая жёлтая строка-тикер</li>
+            <li>заголовки въезжают как машина в кадр</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

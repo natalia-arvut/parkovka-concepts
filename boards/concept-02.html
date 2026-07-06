@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Концепция 02 — Воздух</title>
+<style>
+@import url('../fonts/fonts.css');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1440px;height:1400px;overflow:hidden;background:#F4F4F1;color:#16181D;
+  font-family:'Manrope',sans-serif}
+.board{padding:48px 56px;height:100%;display:flex;flex-direction:column;gap:28px}
+
+.b-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid #E1E1DC;padding-bottom:18px}
+.b-head .tag{font-size:13px;letter-spacing:.14em;color:#9A9E96;font-weight:600}
+.b-head .name{font-size:20px;color:#2E5CFF;font-weight:800;letter-spacing:.04em}
+
+.browser{background:#FFFFFF;border:1px solid #E7E7E2;border-radius:14px;overflow:hidden;
+  box-shadow:0 30px 70px rgba(22,24,29,.09)}
+.browser .bar{height:40px;background:#FAFAF8;border-bottom:1px solid #EEEEE9;
+  display:flex;align-items:center;gap:8px;padding:0 18px}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#E3E3DE;display:block}
+.browser .bar .url{margin-left:14px;font-size:12px;color:#9A9E96;background:#F1F1EC;
+  border-radius:6px;padding:5px 14px;font-weight:600}
+
+.hero{position:relative;height:700px;background:#FFFFFF;display:flex;flex-direction:column;overflow:hidden}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 48px}
+.logo{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.logo b{color:#2E5CFF}
+.nav .links{display:flex;gap:28px;font-size:14.5px;color:#6E7276;font-weight:600}
+.nav .cta-s{font-size:14px;color:#fff;background:#16181D;padding:10px 20px;border-radius:99px;font-weight:700}
+.hero-in{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:46px 60px 0;position:relative}
+h1{font-weight:800;font-size:58px;line-height:1.05;letter-spacing:-.025em;max-width:20ch}
+h1 span{color:#2E5CFF}
+.h-sub{margin-top:18px;font-size:17.5px;line-height:1.55;color:#5D6167;max-width:64ch;font-weight:500}
+.h-btns{display:flex;gap:12px;margin-top:30px}
+.btn-a{background:#2E5CFF;color:#fff;font-weight:700;font-size:15.5px;padding:15px 30px;border-radius:99px;
+  box-shadow:0 10px 26px rgba(46,92,255,.28)}
+.btn-b{border:1.5px solid #E1E1DC;color:#16181D;font-size:15.5px;padding:15px 28px;border-radius:99px;font-weight:700;background:#fff}
+
+/* парящие карточки продукта */
+.float-wrap{position:relative;width:100%;flex:1;margin-top:26px}
+.f-card{position:absolute;background:#fff;border:1px solid #ECECEA;border-radius:16px;
+  box-shadow:0 24px 60px rgba(22,24,29,.10)}
+.f-pay{left:50%;transform:translateX(-50%);bottom:10px;width:350px;padding:19px 24px;text-align:left}
+.f-pay .fp-t{font-size:12.5px;font-weight:700;letter-spacing:.1em;color:#9A9E96}
+.f-pay .fp-plate{margin-top:12px;display:flex;justify-content:space-between;align-items:center}
+.f-pay .fp-plate b{font-size:22px;font-weight:800;letter-spacing:.04em}
+.f-pay .fp-plate span{font-size:12px;background:#EAF9F0;color:#0F9B57;font-weight:700;padding:5px 10px;border-radius:99px}
+.f-pay .fp-row{display:flex;justify-content:space-between;font-size:14.5px;color:#5D6167;font-weight:600;
+  padding:11px 0;border-bottom:1px solid #F1F1EC}
+.f-pay .fp-row b{color:#16181D;font-weight:800}
+.f-pay .fp-btn{margin-top:13px;background:#16181D;color:#fff;text-align:center;font-weight:700;
+  font-size:14.5px;padding:12px;border-radius:12px}
+.f-left{left:130px;bottom:24px;width:250px;padding:20px 22px;text-align:left}
+.f-left .fl-num{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.f-left .fl-num i{font-style:normal;color:#2E5CFF}
+.f-left .fl-cap{font-size:13.5px;color:#5D6167;font-weight:600;margin-top:4px;line-height:1.45}
+.f-right{right:130px;bottom:54px;width:250px;padding:20px 22px;text-align:left}
+.f-right .fr-t{font-size:12px;font-weight:700;letter-spacing:.1em;color:#9A9E96;margin-bottom:10px}
+.f-right .fr-row{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;padding:7px 0}
+.f-right .fr-row i{width:26px;height:26px;border-radius:8px;background:#EEF2FF;display:flex;align-items:center;justify-content:center}
+.f-right svg{width:15px;height:15px;stroke:#2E5CFF;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.lower{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1}
+.mini{background:#FFFFFF;border:1px solid #E7E7E2;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.mini .m-cap{font-size:11.5px;letter-spacing:.12em;color:#9A9E96;font-weight:700;
+  padding:12px 18px;border-bottom:1px solid #EEEEE9}
+.mini .m-body{padding:20px 18px;flex:1}
+.m-body h4{font-size:17px;font-weight:800;margin-bottom:14px}
+.tarif{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid #ECECEA;
+  border-radius:10px;margin-bottom:8px;font-size:14px;color:#5D6167;font-weight:600}
+.tarif b{color:#16181D;font-weight:800;font-size:13.5px}
+.tarif.top{border-color:#2E5CFF;background:#F5F8FF}
+.tarif.top b{color:#2E5CFF}
+.bpost{border:1px solid #ECECEA;border-radius:10px;padding:14px;margin-bottom:10px}
+.bpost .bp-tag{font-size:10.5px;color:#2E5CFF;letter-spacing:.1em;font-weight:800}
+.bpost h5{font-size:14.5px;font-weight:700;line-height:1.35;margin-top:7px}
+.bpost .bp-meta{font-size:12px;color:#9A9E96;margin-top:7px;font-weight:600}
+
+.dna .m-body{display:flex;flex-direction:column;gap:16px}
+.chips{display:flex;gap:8px}
+.chip{flex:1;height:52px;border-radius:8px;position:relative;border:1px solid #ECECEA}
+.chip span{position:absolute;left:8px;bottom:6px;font-size:9.5px;color:#9A9E96;font-weight:700}
+.type-spec .big{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.type-spec .small{font-size:13px;color:#5D6167;margin-top:6px;line-height:1.5;font-weight:500}
+.type-spec .accent{font-size:12.5px;color:#2E5CFF;margin-top:6px;font-weight:800;letter-spacing:.04em}
+.motion{border-top:1px dashed #E1E1DC;padding-top:14px}
+.motion .m-t{font-size:11px;color:#9A9E96;letter-spacing:.12em;margin-bottom:9px;font-weight:700}
+.motion ul{list-style:none;font-size:13px;color:#5D6167;line-height:1.75;font-weight:500}
+.motion li::before{content:"→ ";color:#2E5CFF;font-weight:800}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="b-head">
+    <div class="tag">ПАРКОВКА.ONLINE&ensp;·&ensp;РЕДИЗАЙН&ensp;·&ensp;КОНЦЕПЦИЯ 02 / 06</div>
+    <div class="name">ВОЗДУХ</div>
+  </div>
+
+  <div class="browser">
+    <div class="bar"><i></i><i></i><i></i><span class="url">parkovka-online.ru</span></div>
+    <div class="hero">
+      <div class="nav">
+        <div class="logo">парковка<b>.online</b></div>
+        <div class="links"><span>Возможности</span><span>Тарифы</span><span>Кейсы</span><span>Блог</span><span>FAQ</span></div>
+        <div class="cta-s">Оплатить парковку</div>
+      </div>
+      <div class="hero-in">
+        <h1>Парковка зарабатывает.<br><span>Облако управляет.</span></h1>
+        <div class="h-sub">Интеллект вместо железа: нейросеть распознаёт номера, оплата проходит онлайн — без паркоматов, билетов и кассовых аппаратов. Запуск за один день.</div>
+        <div class="h-btns"><div class="btn-a">Заказать презентацию</div><div class="btn-b">Как это работает</div></div>
+        <div class="float-wrap">
+          <div class="f-card f-left">
+            <div class="fl-num">×10 <i>дешевле</i></div>
+            <div class="fl-cap">облако вместо покупки паркоматов и касс</div>
+          </div>
+          <div class="f-card f-pay">
+            <div class="fp-t">ОПЛАТА ПАРКОВКИ</div>
+            <div class="fp-plate"><b>В 512 КХ 199</b><span>распознан</span></div>
+            <div class="fp-row"><span>Время на парковке</span><b>2 ч 40 мин</b></div>
+            <div class="fp-row"><span>К оплате</span><b>320 ₽</b></div>
+            <div class="fp-btn">Оплатить онлайн</div>
+          </div>
+          <div class="f-card f-right">
+            <div class="fr-t">БЕЗ ЖЕЛЕЗА</div>
+            <div class="fr-row"><i><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></i>Без паркоматов</div>
+            <div class="fr-row"><i><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></i>Без билетов</div>
+            <div class="fr-row"><i><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></i>Без кассира</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="mini">
+      <div class="m-cap">ВНУТРЕННЯЯ СТРАНИЦА · ТАРИФЫ</div>
+      <div class="m-body">
+        <h4>Прозрачные тарифы</h4>
+        <div class="tarif"><span>Бесплатный</span><b>0 ₽</b></div>
+        <div class="tarif top"><span>Стандартный</span><b>30 000 ₽/мес</b></div>
+        <div class="tarif"><span>Расширенный</span><b>40 000 ₽/мес</b></div>
+        <div class="tarif"><span>VIP · white label</span><b>индивидуально</b></div>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="m-cap">РАЗДЕЛ · БЛОГ</div>
+      <div class="m-body">
+        <div class="bpost"><div class="bp-tag">ЭКОНОМИКА</div><h5>Сколько на самом деле стоит запуск платной парковки</h5><div class="bp-meta">12 мин · Гайд</div></div>
+        <div class="bpost"><div class="bp-tag">ТЕХНОЛОГИИ</div><h5>Распознавание номеров: как нейросеть заменяет шлагбаумного оператора</h5><div class="bp-meta">8 мин · Под капотом</div></div>
+        <div class="bpost"><div class="bp-tag">КЕЙС</div><h5>Как парковка ТЦ перешла в облако за один день</h5><div class="bp-meta">6 мин · Кейсы</div></div>
+      </div>
+    </div>
+    <div class="mini dna">
+      <div class="m-cap">ДНК КОНЦЕПЦИИ</div>
+      <div class="m-body">
+        <div class="chips">
+          <div class="chip" style="background:#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="chip" style="background:#F4F4F1"><span>#F4F4F1</span></div>
+          <div class="chip" style="background:#2E5CFF"><span style="color:#fff">#2E5CFF</span></div>
+          <div class="chip" style="background:#16181D"><span style="color:#fff">#16181D</span></div>
+        </div>
+        <div class="type-spec">
+          <div class="big">Manrope · 800</div>
+          <div class="small">Одна гарнитура на всё — заголовки, интерфейс, цифры. Иерархия строится только весом и кеглем: так выглядят Stripe и Linear. Максимум воздуха, ни одного лишнего элемента.</div>
+          <div class="accent">SAAS-МИНИМАЛИЗМ · ЭЛЕКТРИК-СИНИЙ АКЦЕНТ</div>
+        </div>
+        <div class="motion">
+          <div class="m-t">MOTION</div>
+          <ul>
+            <li>карточки продукта мягко всплывают и парят</li>
+            <li>магнитные кнопки, плавный blur-переход между страницами</li>
+            <li>сдержанные fade-up при скролле, ничего лишнего</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

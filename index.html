@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Парковка.online — 6 визуальных концепций редизайна</title>
+<meta name="description" content="Шесть визуальных концепций редизайна сайта облачной системы платной парковки: направление, настроение, палитра, типографика и motion-идеи для каждого варианта.">
+<style>
+@import url('fonts/fonts.css');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#101114; --panel:#17181C; --line:#26272C;
+  --text:#E9EAEC; --mut:#9CA0A8; --dim:#5F636C; --acc:#FFC940;
+}
+body{background:var(--bg);color:var(--text);font-family:'Golos Text',sans-serif;line-height:1.6}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+
+header{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+.kicker{font-size:13px;letter-spacing:.18em;color:var(--acc);font-weight:600;text-transform:uppercase}
+h1{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(30px,4.4vw,52px);line-height:1.1;
+  letter-spacing:-.02em;margin-top:18px}
+.lead{margin-top:20px;font-size:17.5px;color:var(--mut);line-height:1.65}
+.head-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.head-meta span{font-size:13px;color:var(--mut);border:1px solid var(--line);border-radius:99px;padding:8px 16px}
+
+.toc{padding:36px 0;border-bottom:1px solid var(--line)}
+.toc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.toc a{display:flex;gap:12px;align-items:baseline;padding:13px 16px;border:1px solid var(--line);
+  border-radius:10px;transition:border-color .2s,background .2s}
+.toc a:hover{border-color:var(--acc);background:rgba(255,201,64,.04)}
+.toc .n{font-family:'Manrope',sans-serif;font-weight:800;color:var(--acc);font-size:14px}
+.toc .t{font-size:14.5px;font-weight:600}
+
+.concept{padding:72px 0;border-bottom:1px solid var(--line)}
+.c-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.c-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:var(--acc);letter-spacing:.1em}
+h2{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(24px,3vw,34px);letter-spacing:-.015em}
+.c-mood{font-size:14px;color:var(--dim);width:100%;margin-top:6px;letter-spacing:.04em}
+.shot{margin-top:28px;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:block;
+  transition:border-color .2s}
+.shot:hover{border-color:#3A3C44}
+.shot img{width:100%;display:block}
+.c-body{margin-top:26px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px}
+.c-idea p{font-size:16px;color:var(--mut);line-height:1.7}
+.c-idea p+p{margin-top:12px}
+.c-idea b{color:var(--text);font-weight:600}
+.spec{display:flex;flex-direction:column;gap:14px}
+.spec-row{border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.spec-row .s-t{font-size:11.5px;letter-spacing:.14em;color:var(--dim);font-weight:600;text-transform:uppercase}
+.spec-row .s-v{font-size:14.5px;margin-top:6px;color:var(--text);line-height:1.55}
+.swatches{display:flex;gap:6px;margin-top:8px}
+.swatches i{width:34px;height:22px;border-radius:5px;border:1px solid rgba(255,255,255,.12);display:block}
+.dl{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;font-weight:600;
+  color:var(--acc);border:1px solid rgba(255,201,64,.35);border-radius:99px;padding:10px 20px;transition:background .2s}
+.dl:hover{background:rgba(255,201,64,.08)}
+
+footer{padding:56px 0 72px}
+footer .f-in{border:1px solid var(--line);border-radius:14px;padding:32px;background:var(--panel)}
+footer h3{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800}
+footer p{margin-top:12px;color:var(--mut);font-size:15.5px;line-height:1.7}
+
+@media(max-width:900px){
+  header{padding:52px 0 40px}
+  .toc-grid{grid-template-columns:1fr}
+  .concept{padding:52px 0}
+  .c-body{grid-template-columns:1fr;gap:20px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Редизайн · визуальные концепции</div>
+    <h1>Парковка.online<br>6 направлений для нового сайта</h1>
+    <p class="lead">Сайт вырастает из лендинга на Tilda в полноценный продукт с блогом и внутренними страницами. Ниже — шесть разных визуальных языков: у каждого своя идея, настроение, палитра, типографика и motion-сценарий. Каждая концепция — не мудборд из чужих картинок, а свёрстанный вручную макет с реальным контентом платформы: обложка, фрагменты внутренних страниц и «ДНК» стиля на одном листе.</p>
+    <div class="head-meta">
+      <span>6 концепций · 6 изображений</span>
+      <span>Реальный контент платформы</span>
+      <span>Без нейрослопа — ручная вёрстка</span>
+      <span>Motion-идеи в каждом варианте</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap toc-grid">
+    <a href="#c01"><span class="n">01</span><span class="t">Диспетчерская — тёмный tech, живые данные</span></a>
+    <a href="#c02"><span class="n">02</span><span class="t">Воздух — светлый SaaS-минимализм</span></a>
+    <a href="#c03"><span class="n">03</span><span class="t">Эволюция бренда — фиолетовый + жёлтый, взросло</span></a>
+    <a href="#c04"><span class="n">04</span><span class="t">Разметка — урбан-брутализм, язык улицы</span></a>
+    <a href="#c05"><span class="n">05</span><span class="t">Город онлайн — ночная карта, данные города</span></a>
+    <a href="#c06"><span class="n">06</span><span class="t">Издание — editorial, блог как двигатель продаж</span></a>
+  </div>
+</nav>
+
+<section class="concept" id="c01">
+  <div class="wrap">
+    <div class="c-head">
+      <span class="c-num">КОНЦЕПЦИЯ 01</span>
+      <h2>Диспетчерская</h2>
+      <div class="c-mood">Настроение: пункт управления, который не спит. Собранность, контроль, технологичность.</div>
+    </div>
+    <a class="shot" href="png/concept-01.png" target="_blank" rel="noopener"><img src="png/concept-01.png" alt="Концепция 01 — Диспетчерская: тёмный tech-стиль с живой панелью данных" loading="lazy"></a>
+    <div class="c-body">
+      <div class="c-idea">
+        <p><b>Идея.</b> Сайт показывает продукт в действии: прямо на обложке живёт панель диспетчера — камера въезда, распознанные номера, оплаты. Посетитель не читает о системе, а видит её работу. Данные (номера, время, деньги) набраны моноширинным шрифтом, как в настоящем терминале.</p>
+        <p><b>Как развить в полноценный сайт.</b> Тёмная «диспетчерская» тема несёт весь сайт: блог выглядит как журнал событий, тарифы — как строки конфигурации, кейсы — как отчёты смены. Раздел блога получает свои рубрики (Экономика, Под капотом, Кейсы) и читается как профессиональный инструмент, а не маркетинговая обёртка.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-row"><div class="s-t">Палитра</div>
+          <div class="swatches"><i style="background:#0B0E11"></i><i style="background:#10161B"></i><i style="background:#C6F135"></i><i style="background:#E8ECEF"></i></div>
+          <div class="s-v">Графит + неоновый лайм: цвет сигнальных огней на тёмной парковке.</div></div>
+        <div class="spec-row"><div class="s-t">Типографика</div><div class="s-v">Tektur 700 — заголовки · Golos Text — текст · JetBrains Mono — данные.</div></div>
+        <div class="spec-row"><div class="s-t">Motion</div><div class="s-v">Каунтеры цифр, пульс LIVE-метки, тикер событий «въезд/выезд», панель оживает карточка за карточкой.</div></div>
+      </div>
+    </div>
+    <a class="dl" href="png/concept-01.png" download>Скачать PNG · концепция 01</a>
+  </div>
+</section>
+
+<section class="concept" id="c02">
+  <div class="wrap">
+    <div class="c-head">
+      <span class="c-num">КОНЦЕПЦИЯ 02</span>
+      <h2>Воздух</h2>
+      <div class="c-mood">Настроение: спокойная уверенность мирового SaaS — уровень Stripe и Linear.</div>
+    </div>
+    <a class="shot" href="png/concept-02.png" target="_blank" rel="noopener"><img src="png/concept-02.png" alt="Концепция 02 — Воздух: светлый SaaS-минимализм с парящими карточками продукта" loading="lazy"></a>
+    <div class="c-body">
+      <div class="c-idea">
+        <p><b>Идея.</b> Максимум воздуха и ни одного лишнего элемента. Крупный заголовок-манифест, один электрик-синий акцент и парящие карточки продукта: экран оплаты, выгода «×10 дешевле», чек-лист «без железа». Так выглядят продукты, которым доверяют деньги.</p>
+        <p><b>Как развить в полноценный сайт.</b> Самая масштабируемая система: сетка и одна гарнитура легко несут любые новые страницы — блог, документацию, кейсы, личный кабинет. Блог оформляется как у больших SaaS: чистые карточки, крупные заголовки, много воздуха. Идеальный вариант, если план — быстро наращивать разделы.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-row"><div class="s-t">Палитра</div>
+          <div class="swatches"><i style="background:#FFFFFF"></i><i style="background:#F4F4F1"></i><i style="background:#2E5CFF"></i><i style="background:#16181D"></i></div>
+          <div class="s-v">Белый и тёплый светло-серый, электрик-синий, чернильный чёрный.</div></div>
+        <div class="spec-row"><div class="s-t">Типографика</div><div class="s-v">Manrope 400–800 — одна гарнитура на всё, иерархия весом и кеглем.</div></div>
+        <div class="spec-row"><div class="s-t">Motion</div><div class="s-v">Карточки мягко всплывают и парят, магнитные кнопки, плавный blur-переход между страницами.</div></div>
+      </div>
+    </div>
+    <a class="dl" href="png/concept-02.png" download>Скачать PNG · концепция 02</a>
+  </div>
+</section>
+
+<section class="concept" id="c03">
+  <div class="wrap">
+    <div class="c-head">
+      <span class="c-num">КОНЦЕПЦИЯ 03</span>
+      <h2>Эволюция бренда</h2>
+      <div class="c-mood">Настроение: тот же характер бренда, но на уровень выше — глубина, стекло, свечение.</div>
+    </div>
+    <a class="shot" href="png/concept-03.png" target="_blank" rel="noopener"><img src="png/concept-03.png" alt="Концепция 03 — Эволюция бренда: фирменные фиолетовый и жёлтый во взрослом тёмном исполнении" loading="lazy"></a>
+    <div class="c-body">
+      <div class="c-idea">
+        <p><b>Идея.</b> Фирменную пару «фиолетовый + жёлтый» не ломаем — взрослим. Плоские заливки и эмодзи текущего сайта заменяются глубоким фиолетовым фоном, стеклянными карточками, свечением и тонкими SVG-иконками. Узнаваемость сохраняется полностью: постоянные клиенты видят «тот же бренд, но повзрослевший».</p>
+        <p><b>Как развить в полноценный сайт.</b> Самый безопасный путь редизайна: логотип, рассылки и материалы компании остаются в силе. Стеклянные карточки становятся универсальным модулем — возможности, тарифы, посты блога, отзывы. Жёлтый работает только как сигнал действия и статусов, фиолетовый держит атмосферу.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-row"><div class="s-t">Палитра</div>
+          <div class="swatches"><i style="background:#170930"></i><i style="background:#8B5CF6"></i><i style="background:#FFD829"></i><i style="background:#EFEAFB"></i></div>
+          <div class="s-v">Глубокий фиолетовый фон, брендовые фиолетовый и жёлтый, лиловый текст.</div></div>
+        <div class="spec-row"><div class="s-t">Типографика</div><div class="s-v">Unbounded 800 — заголовки с характером · Onest — текст.</div></div>
+        <div class="spec-row"><div class="s-t">Motion</div><div class="s-v">Параллакс свечения, стеклянные карточки тянутся к курсору, жёлтый статус «распознан» вспыхивает.</div></div>
+      </div>
+    </div>
+    <a class="dl" href="png/concept-03.png" download>Скачать PNG · концепция 03</a>
+  </div>
+</section>
+
+<section class="concept" id="c04">
+  <div class="wrap">
+    <div class="c-head">
+      <span class="c-num">КОНЦЕПЦИЯ 04</span>
+      <h2>Разметка</h2>
+      <div class="c-mood">Настроение: асфальт, жёлтая краска, честная физика улицы. Смело и запоминается.</div>
+    </div>
+    <a class="shot" href="png/concept-04.png" target="_blank" rel="noopener"><img src="png/concept-04.png" alt="Концепция 04 — Разметка: урбан-брутализм с фактурой асфальта и жёлтой дорожной краской" loading="lazy"></a>
+    <div class="c-body">
+      <div class="c-idea">
+        <p><b>Идея.</b> Визуальный язык берём у самой парковки: фактура асфальта, жёлтая линия разметки, пунктиры, таблички-знаки. Конденсированные заглавные заголовки работают как трафаретные надписи на дороге. Ни у одного конкурента в нише не будет такого лица — сайт запоминается с первого экрана.</p>
+        <p><b>Как развить в полноценный сайт.</b> Разметка становится навигационной метафорой: пунктирная линия ведёт по странице от секции к секции, посты блога — «знаки» с жёлтым кантом, этапы запуска — дорожные указатели. Бегущая жёлтая строка-тикер сшивает все страницы в одно движение.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-row"><div class="s-t">Палитра</div>
+          <div class="swatches"><i style="background:#111111"></i><i style="background:#FFD400"></i><i style="background:#F2F0EA"></i><i style="background:#6E6C64"></i></div>
+          <div class="s-v">Чёрный асфальт, жёлтая дорожная краска, тёплый белый, серый бетон.</div></div>
+        <div class="spec-row"><div class="s-t">Типографика</div><div class="s-v">Oswald 700 CAPS — трафаретные заголовки · Golos Text — текст.</div></div>
+        <div class="spec-row"><div class="s-t">Motion</div><div class="s-v">Разметка прорисовывается линией при скролле, жёлтый тикер бежит, заголовки въезжают в кадр.</div></div>
+      </div>
+    </div>
+    <a class="dl" href="png/concept-04.png" download>Скачать PNG · концепция 04</a>
+  </div>
+</section>
+
+<section class="concept" id="c05">
+  <div class="wrap">
+    <div class="c-head">
+      <span class="c-num">КОНЦЕПЦИЯ 05</span>
+      <h2>Город онлайн</h2>
+      <div class="c-mood">Настроение: ночной город с высоты — огни, движение, живые данные.</div>
+    </div>
+    <a class="shot" href="png/concept-05.png" target="_blank" rel="noopener"><img src="png/concept-05.png" alt="Концепция 05 — Город онлайн: ночная аэросъёмка города с пинами парковок и карточками данных" loading="lazy"></a>
+    <div class="c-body">
+      <div class="c-idea">
+        <p><b>Идея.</b> Парковка — точка на карте города, которая зарабатывает. Ночная аэросъёмка задаёт масштаб и эмоцию, поверх города — пины парковок и стеклянные карточки живых данных: свободные места, выручка за день. Продукт сразу считывается как «городская инфраструктура», а не утилита.</p>
+        <p><b>Как развить в полноценный сайт.</b> Карта — сквозной образ: на главной — город, в кейсах — конкретные объекты с цифрами, в личном кабинете — виджеты как в городской навигации. Блог получает рубрику «Город» про тренды платных парковок. Янтарный и голубой держат систему статусов во всех разделах.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-row"><div class="s-t">Палитра</div>
+          <div class="swatches"><i style="background:#0A1128"></i><i style="background:#FFB84D"></i><i style="background:#6FD3FF"></i><i style="background:#E9EEF9"></i></div>
+          <div class="s-v">Тёмно-синяя ночь, янтарь городских огней, голубые пины, светлый текст.</div></div>
+        <div class="spec-row"><div class="s-t">Типографика</div><div class="s-v">Jost 600 — геометричные заголовки · Onest — текст.</div></div>
+        <div class="spec-row"><div class="s-t">Motion</div><div class="s-v">Пины пульсируют как огни, параллакс-глубина карты, каунтеры выручки обновляются на глазах.</div></div>
+      </div>
+    </div>
+    <a class="dl" href="png/concept-05.png" download>Скачать PNG · концепция 05</a>
+  </div>
+</section>
+
+<section class="concept" id="c06">
+  <div class="wrap">
+    <div class="c-head">
+      <span class="c-num">КОНЦЕПЦИЯ 06</span>
+      <h2>Издание</h2>
+      <div class="c-mood">Настроение: отраслевой журнал о парковочном бизнесе. Экспертность, спокойный вес.</div>
+    </div>
+    <a class="shot" href="png/concept-06.png" target="_blank" rel="noopener"><img src="png/concept-06.png" alt="Концепция 06 — Издание: editorial-вёрстка с чёрно-белой архитектурной фотографией паркинга" loading="lazy"></a>
+    <div class="c-body">
+      <div class="c-idea">
+        <p><b>Идея.</b> Раз сайт становится платформой с блогом — делаем из этого главный козырь. Вёрстка отраслевого издания: шапка-масthead, рубрикатор, серифные заголовки, чёрно-белая архитектурная фотография паркингов. Главная читается как свежий выпуск, где продукт — главная тема номера.</p>
+        <p><b>Как развить в полноценный сайт.</b> Концепция буквально построена вокруг блога: каждый материал отвечает на вопрос владельца парковки и заканчивается кнопкой презентации. Кейсы — репортажи, FAQ — рубрика «вопрос–ответ», тарифы — аккуратная «полоса объявлений». Лучший вариант для контент-маркетинга и SEO.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-row"><div class="s-t">Палитра</div>
+          <div class="swatches"><i style="background:#F7F5EF"></i><i style="background:#1A1A18"></i><i style="background:#C73A1D"></i><i style="background:#D8D4C8"></i></div>
+          <div class="s-v">Бумажный фон, типографская чернота, сигнальный красно-оранжевый.</div></div>
+        <div class="spec-row"><div class="s-t">Типографика</div><div class="s-v">Playfair Display 800 + Italic — серифные заголовки · Golos Text — текст.</div></div>
+        <div class="spec-row"><div class="s-t">Motion</div><div class="s-v">Заголовки проявляются построчно, штрихи-подчёркивания рисуются, фото «дышит» зумом.</div></div>
+      </div>
+    </div>
+    <a class="dl" href="png/concept-06.png" download>Скачать PNG · концепция 06</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <h3>Как выбирали направления</h3>
+      <p>Все шесть концепций собраны на реальном контенте платформы: слоган «Интеллект вместо железа», распознавание номеров нейросетью, запуск за один день, тарифы и структура разделов с действующего сайта. Каждый борд свёрстан вручную (HTML/CSS) — это значит, что выбранное направление переносится в рабочий сайт без потерь: шрифты, цвета и сетка уже существуют в коде, а не только на картинке. Любую концепцию можно углубить: собрать интерактивный прототип главной, внутренних страниц и блога.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

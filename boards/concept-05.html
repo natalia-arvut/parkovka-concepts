@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Концепция 05 — Город онлайн</title>
+<style>
+@import url('../fonts/fonts.css');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1440px;height:1400px;overflow:hidden;background:#0A1128;color:#E9EEF9;
+  font-family:'Onest',sans-serif}
+.board{padding:48px 56px;height:100%;display:flex;flex-direction:column;gap:28px}
+
+.b-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid #1B2848;padding-bottom:18px}
+.b-head .tag{font-size:13px;letter-spacing:.14em;color:#5A6B94;font-weight:600}
+.b-head .name{font-family:'Jost',sans-serif;font-size:20px;color:#FFB84D;font-weight:600;letter-spacing:.14em}
+
+.browser{background:#0C1530;border:1px solid #1E2C50;border-radius:14px;overflow:hidden;
+  box-shadow:0 40px 90px rgba(2,6,18,.65)}
+.browser .bar{height:40px;background:#101A38;border-bottom:1px solid #1E2C50;
+  display:flex;align-items:center;gap:8px;padding:0 18px}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#22315A;display:block}
+.browser .bar .url{margin-left:14px;font-size:12px;color:#5A6B94;background:#0A1128;border-radius:6px;
+  padding:5px 14px;font-weight:600}
+
+.hero{position:relative;height:700px;display:flex;flex-direction:column;overflow:hidden}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.hero .bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(8,13,33,.95) 0%,rgba(8,13,33,.82) 40%,rgba(8,13,33,.30) 75%,rgba(8,13,33,.45) 100%)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 44px;position:relative;z-index:2}
+.logo{font-family:'Jost',sans-serif;font-size:19px;font-weight:600;letter-spacing:.04em;color:#fff}
+.logo b{color:#FFB84D;font-weight:600}
+.nav .links{display:flex;gap:26px;font-size:14px;color:#93A3C7;font-weight:500}
+.nav .cta-s{font-size:14px;color:#0A1128;background:#FFB84D;padding:10px 22px;border-radius:99px;font-weight:700}
+.hero-in{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 44px 70px;position:relative;z-index:2}
+.h-eyebrow{font-size:12.5px;letter-spacing:.22em;color:#FFB84D;font-weight:600;margin-bottom:20px}
+h1{font-family:'Jost',sans-serif;font-weight:600;font-size:56px;line-height:1.08;color:#fff;max-width:22ch}
+h1 .a{color:#FFB84D}
+.h-sub{margin-top:20px;font-size:17.5px;line-height:1.6;color:#B7C3DE;max-width:47ch}
+.h-btns{display:flex;gap:14px;margin-top:32px}
+.btn-a{background:#FFB84D;color:#0A1128;font-weight:700;font-size:15.5px;padding:15px 30px;border-radius:99px;
+  box-shadow:0 14px 36px rgba(255,184,77,.25)}
+.btn-b{border:1px solid #33436F;color:#E9EEF9;font-size:15.5px;font-weight:600;padding:15px 28px;border-radius:99px}
+
+/* пины и карточка на карте */
+.pin{position:absolute;z-index:2;width:14px;height:14px;border-radius:50%;background:#FFB84D;
+  box-shadow:0 0 0 7px rgba(255,184,77,.18),0 0 24px rgba(255,184,77,.65)}
+.pin.p2{background:#6FD3FF;box-shadow:0 0 0 7px rgba(111,211,255,.15),0 0 24px rgba(111,211,255,.6)}
+.map-card{position:absolute;z-index:3;right:56px;bottom:56px;width:300px;background:rgba(10,17,40,.86);
+  border:1px solid #2A3A66;border-radius:16px;padding:20px 22px;backdrop-filter:blur(14px)}
+.map-card .mc-t{font-size:11.5px;letter-spacing:.14em;color:#5A6B94;font-weight:700}
+.map-card .mc-name{font-family:'Jost',sans-serif;font-size:18px;color:#fff;font-weight:600;margin-top:8px}
+.map-card .mc-row{display:flex;justify-content:space-between;font-size:13.5px;color:#93A3C7;padding:8px 0;
+  border-bottom:1px solid #1B2848}
+.map-card .mc-row b{color:#E9EEF9;font-weight:600}
+.map-card .mc-row .free{color:#7BE8A8}
+.map-card .mc-btn{margin-top:14px;background:#FFB84D;color:#0A1128;text-align:center;font-weight:700;
+  font-size:14px;padding:12px;border-radius:10px}
+
+.lower{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1}
+.mini{background:#0C1530;border:1px solid #1E2C50;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.mini .m-cap{font-size:11px;letter-spacing:.14em;color:#5A6B94;font-weight:700;
+  padding:12px 18px;border-bottom:1px solid #1B2848}
+.mini .m-body{padding:20px 18px;flex:1}
+.m-body h4{font-family:'Jost',sans-serif;font-size:18px;color:#fff;font-weight:600;margin-bottom:14px}
+.stat-row{display:flex;gap:10px;margin-bottom:12px}
+.stat{flex:1;background:#0A1128;border:1px solid #1E2C50;border-radius:10px;padding:14px 12px}
+.stat b{display:block;font-family:'Jost',sans-serif;font-size:22px;color:#FFB84D;font-weight:600}
+.stat span{font-size:11.5px;color:#5A6B94;letter-spacing:.04em;line-height:1.4;display:block;margin-top:4px}
+.note{font-size:13px;color:#93A3C7;line-height:1.6}
+.bpost{border:1px solid #1E2C50;border-radius:10px;padding:14px;margin-bottom:10px;background:#0A1128}
+.bpost .bp-tag{font-size:10.5px;color:#FFB84D;letter-spacing:.12em;font-weight:700}
+.bpost h5{font-size:14px;color:#E9EEF9;font-weight:600;line-height:1.4;margin-top:7px}
+.bpost .bp-meta{font-size:11.5px;color:#5A6B94;margin-top:7px}
+
+.dna .m-body{display:flex;flex-direction:column;gap:16px}
+.chips{display:flex;gap:8px}
+.chip{flex:1;height:52px;border-radius:8px;position:relative;border:1px solid #1E2C50}
+.chip span{position:absolute;left:8px;bottom:6px;font-size:9.5px;color:#93A3C7;font-weight:600}
+.type-spec .big{font-family:'Jost',sans-serif;font-size:28px;color:#fff;font-weight:600;line-height:1.1}
+.type-spec .small{font-size:13px;color:#93A3C7;margin-top:7px;line-height:1.5}
+.type-spec .accent{font-size:12px;color:#FFB84D;margin-top:7px;font-weight:700;letter-spacing:.1em}
+.motion{border-top:1px dashed #2A3A66;padding-top:14px}
+.motion .m-t{font-size:11px;color:#5A6B94;letter-spacing:.14em;margin-bottom:9px;font-weight:700}
+.motion ul{list-style:none;font-size:13px;color:#93A3C7;line-height:1.75}
+.motion li::before{content:"→ ";color:#FFB84D}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="b-head">
+    <div class="tag">ПАРКОВКА.ONLINE&ensp;·&ensp;РЕДИЗАЙН&ensp;·&ensp;КОНЦЕПЦИЯ 05 / 06</div>
+    <div class="name">ГОРОД ОНЛАЙН</div>
+  </div>
+
+  <div class="browser">
+    <div class="bar"><i></i><i></i><i></i><span class="url">parkovka-online.ru</span></div>
+    <div class="hero">
+      <div class="bg"><img src="../img/night-city.png" alt=""></div>
+      <span class="pin" style="right:390px;top:210px"></span>
+      <span class="pin p2" style="right:230px;top:330px"></span>
+      <span class="pin" style="right:500px;top:430px"></span>
+      <div class="nav">
+        <div class="logo">парковка<b>.online</b></div>
+        <div class="links"><span>Возможности</span><span>Тарифы</span><span>Кейсы</span><span>Блог</span><span>FAQ</span></div>
+        <div class="cta-s">Оплатить парковку</div>
+      </div>
+      <div class="hero-in">
+        <div class="h-eyebrow">ОБЛАЧНАЯ СИСТЕМА ПЛАТНОЙ ПАРКОВКИ</div>
+        <h1>Ваша парковка —<br>точка на карте, которая <span class="a">зарабатывает</span></h1>
+        <div class="h-sub">Город не спит — и парковка тоже. Камеры распознают номера, оплата приходит онлайн, а вы видите каждый въезд и каждый рубль из любой точки мира.</div>
+        <div class="h-btns"><div class="btn-a">Заказать презентацию</div><div class="btn-b">Смотреть возможности</div></div>
+      </div>
+      <div class="map-card">
+        <div class="mc-t">ПАРКОВКА · ТЦ «МЕРИДИАН»</div>
+        <div class="mc-name">126 мест · открыта</div>
+        <div class="mc-row"><span>Свободно сейчас</span><b class="free">37 мест</b></div>
+        <div class="mc-row"><span>Выручка за сегодня</span><b>48 320 ₽</b></div>
+        <div class="mc-btn">Открыть в системе</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="mini">
+      <div class="m-cap">ВНУТРЕННЯЯ СТРАНИЦА · ЛИЧНЫЙ КАБИНЕТ</div>
+      <div class="m-body">
+        <h4>Панель владельца</h4>
+        <div class="stat-row">
+          <div class="stat"><b>×10</b><span>дешевле обычной системы</span></div>
+          <div class="stat"><b>1 день</b><span>от договора до запуска</span></div>
+        </div>
+        <div class="note">Виджеты как в городской навигации: занятость, выручка, события въезда и выезда — живые данные вместо статичных страниц.</div>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="m-cap">РАЗДЕЛ · БЛОГ</div>
+      <div class="m-body">
+        <div class="bpost"><div class="bp-tag">ГОРОД</div><h5>Куда едет платная парковка: тренды городов-миллионников</h5><div class="bp-meta">10 мин · Аналитика</div></div>
+        <div class="bpost"><div class="bp-tag">ТЕХНОЛОГИИ</div><h5>Камера вместо шлагбаумного терминала: как это работает ночью</h5><div class="bp-meta">8 мин · Под капотом</div></div>
+        <div class="bpost"><div class="bp-tag">КЕЙС</div><h5>Парковка у ТЦ: +37 свободных мест без нового этажа</h5><div class="bp-meta">6 мин · Кейсы</div></div>
+      </div>
+    </div>
+    <div class="mini dna">
+      <div class="m-cap">ДНК КОНЦЕПЦИИ</div>
+      <div class="m-body">
+        <div class="chips">
+          <div class="chip" style="background:#0A1128"><span>#0A1128</span></div>
+          <div class="chip" style="background:#FFB84D"><span style="color:#0A1128">#FFB84D</span></div>
+          <div class="chip" style="background:#6FD3FF"><span style="color:#0A1128">#6FD3FF</span></div>
+          <div class="chip" style="background:#E9EEF9"><span style="color:#0A1128">#E9EEF9</span></div>
+        </div>
+        <div class="type-spec">
+          <div class="big">Jost · 600</div>
+          <div class="small">Onest — текст. Настроение ночного города с высоты: янтарные огни улиц, голубые пины парковок, стеклянные карточки данных поверх реального города.</div>
+          <div class="accent">КАРТА · ДАННЫЕ · НОЧНОЙ ГОРОД</div>
+        </div>
+        <div class="motion">
+          <div class="m-t">MOTION</div>
+          <ul>
+            <li>пины парковок пульсируют, как огни города</li>
+            <li>параллакс: карта плывёт медленнее контента</li>
+            <li>каунтеры выручки и мест обновляются на глазах</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

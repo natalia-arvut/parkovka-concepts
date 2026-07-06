@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Концепция 01 — Диспетчерская</title>
+<style>
+@import url('../fonts/fonts.css');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1440px;height:1400px;overflow:hidden;background:#0B0E11;color:#E8ECEF;
+  font-family:'Golos Text',sans-serif;position:relative}
+.board{padding:48px 56px;height:100%;display:flex;flex-direction:column;gap:28px}
+
+/* ── шапка борда ── */
+.b-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid #1E252B;padding-bottom:18px}
+.b-head .tag{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.14em;color:#5A6672}
+.b-head .name{font-family:'Tektur',sans-serif;font-size:20px;color:#C6F135;letter-spacing:.06em}
+
+/* ── браузерный мокап hero ── */
+.browser{background:#0E1317;border:1px solid #232B33;border-radius:14px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.browser .bar{height:40px;background:#12181D;border-bottom:1px solid #232B33;
+  display:flex;align-items:center;gap:8px;padding:0 18px}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#242E36;display:block}
+.browser .bar .url{margin-left:14px;font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:#5A6672;background:#0B0E11;border-radius:6px;padding:5px 14px}
+
+/* hero внутри мокапа */
+.hero{position:relative;height:700px;background:
+  radial-gradient(900px 500px at 78% 30%,rgba(198,241,53,.06),transparent 60%),#0B0E11;
+  display:flex;flex-direction:column}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 44px;
+  border-bottom:1px solid #161C21}
+.logo{font-family:'Tektur',sans-serif;font-size:19px;color:#fff;letter-spacing:.02em}
+.logo b{color:#C6F135}
+.nav .links{display:flex;gap:26px;font-size:14px;color:#8B97A1}
+.nav .links span.act{color:#E8ECEF}
+.nav .cta-s{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#0B0E11;background:#C6F135;
+  padding:9px 18px;border-radius:8px;font-weight:700}
+.hero-in{flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;padding:40px 44px 36px}
+.h-left{display:flex;flex-direction:column;justify-content:center}
+.h-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.18em;color:#C6F135;margin-bottom:20px}
+.h-eyebrow i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#C6F135;margin-right:9px;
+  box-shadow:0 0 12px #C6F135}
+h1{font-family:'Tektur',sans-serif;font-weight:700;font-size:52px;line-height:1.08;color:#fff;max-width:26ch}
+h1 span{color:#C6F135}
+.h-sub{margin-top:22px;font-size:17.5px;line-height:1.55;color:#9AA6B0;max-width:44ch}
+.h-btns{display:flex;gap:14px;margin-top:32px}
+.btn-a{background:#C6F135;color:#0B0E11;font-weight:600;font-size:15.5px;padding:15px 28px;border-radius:10px}
+.btn-b{border:1px solid #2A333C;color:#C9D2DA;font-size:15.5px;padding:15px 26px;border-radius:10px}
+.h-stats{display:flex;gap:36px;margin-top:38px;font-family:'JetBrains Mono',monospace}
+.h-stats b{display:block;font-size:24px;color:#fff}
+.h-stats span{font-size:12px;color:#5A6672;letter-spacing:.06em}
+
+/* панель диспетчера */
+.panel{background:#10161B;border:1px solid #232B33;border-radius:14px;padding:18px;
+  display:flex;flex-direction:column;gap:12px;align-self:center;width:100%}
+.p-top{display:flex;justify-content:space-between;align-items:center}
+.p-top .t{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8B97A1;letter-spacing:.1em}
+.p-top .live{font-family:'JetBrains Mono',monospace;font-size:11px;color:#C6F135}
+.p-top .live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C6F135;margin-right:6px;box-shadow:0 0 10px #C6F135}
+.cam{position:relative;border-radius:10px;overflow:hidden;height:210px}
+.cam img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;display:block;filter:saturate(.85) contrast(1.05)}
+.cam .hud{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,17,.35),transparent 30%,transparent 70%,rgba(11,14,17,.55))}
+.cam .plate{position:absolute;left:14px;bottom:12px;font-family:'JetBrains Mono',monospace;font-size:13px;
+  background:rgba(11,14,17,.8);border:1px solid #C6F135;color:#C6F135;padding:5px 10px;border-radius:6px}
+.cam .cam-id{position:absolute;right:12px;top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8ECEF;
+  background:rgba(11,14,17,.7);padding:4px 9px;border-radius:6px}
+.rows{display:flex;flex-direction:column;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12.5px}
+.row{display:flex;justify-content:space-between;align-items:center;background:#0B0F13;border:1px solid #1C232A;
+  border-radius:8px;padding:10px 14px;color:#9AA6B0}
+.row b{color:#E8ECEF;font-weight:400}
+.row .ok{color:#C6F135}
+.row .pay{color:#6FD3FF}
+
+/* ── нижняя зона: внутренние страницы + ДНК стиля ── */
+.lower{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1}
+.mini{background:#0E1317;border:1px solid #232B33;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.mini .m-cap{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:#5A6672;
+  padding:12px 18px;border-bottom:1px solid #1C232A}
+.mini .m-body{padding:20px 18px;flex:1}
+.m-body h4{font-family:'Tektur',sans-serif;font-size:17px;color:#fff;margin-bottom:14px}
+.tarif{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;border:1px solid #1C232A;
+  border-radius:8px;margin-bottom:8px;font-size:13.5px;color:#9AA6B0}
+.tarif b{font-family:'JetBrains Mono',monospace;color:#E8ECEF;font-weight:400;font-size:13px}
+.tarif.vip{border-color:#C6F135;background:rgba(198,241,53,.05)}
+.tarif.vip b{color:#C6F135}
+.bpost{border:1px solid #1C232A;border-radius:8px;padding:14px;margin-bottom:10px}
+.bpost .bp-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#C6F135;letter-spacing:.1em}
+.bpost h5{font-size:14.5px;color:#E8ECEF;font-weight:600;line-height:1.35;margin-top:7px}
+.bpost .bp-meta{font-size:11.5px;color:#5A6672;margin-top:7px}
+
+/* ДНК стиля */
+.dna .m-body{display:flex;flex-direction:column;gap:16px}
+.chips{display:flex;gap:8px}
+.chip{flex:1;height:52px;border-radius:8px;position:relative;border:1px solid #1C232A}
+.chip span{position:absolute;left:8px;bottom:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#8B97A1}
+.type-spec .big{font-family:'Tektur',sans-serif;font-size:30px;color:#fff;line-height:1.1}
+.type-spec .small{font-size:13px;color:#9AA6B0;margin-top:6px;line-height:1.5}
+.type-spec .mono{font-family:'JetBrains Mono',monospace;font-size:12px;color:#C6F135;margin-top:6px}
+.motion{border-top:1px dashed #232B33;padding-top:14px}
+.motion .m-t{font-family:'JetBrains Mono',monospace;font-size:11px;color:#5A6672;letter-spacing:.12em;margin-bottom:9px}
+.motion ul{list-style:none;font-size:13px;color:#9AA6B0;line-height:1.75}
+.motion li::before{content:"→ ";color:#C6F135;font-family:'JetBrains Mono',monospace}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="b-head">
+    <div class="tag">ПАРКОВКА.ONLINE&ensp;·&ensp;РЕДИЗАЙН&ensp;·&ensp;КОНЦЕПЦИЯ 01 / 06</div>
+    <div class="name">ДИСПЕТЧЕРСКАЯ</div>
+  </div>
+
+  <div class="browser">
+    <div class="bar"><i></i><i></i><i></i><span class="url">parkovka-online.ru</span></div>
+    <div class="hero">
+      <div class="nav">
+        <div class="logo">парковка<b>.online</b></div>
+        <div class="links"><span class="act">Возможности</span><span>Тарифы</span><span>Кейсы</span><span>Блог</span><span>FAQ</span></div>
+        <div class="cta-s">ОПЛАТИТЬ ПАРКОВКУ</div>
+      </div>
+      <div class="hero-in">
+        <div class="h-left">
+          <div class="h-eyebrow"><i></i>СИСТЕМА РАБОТАЕТ · 24/7</div>
+          <h1>Интеллект<br>вместо <span>железа</span></h1>
+          <div class="h-sub">Облачная система платной парковки. Нейросеть распознаёт номера, оплата проходит без паркоматов и билетов — вы видите каждый рубль в реальном времени.</div>
+          <div class="h-btns"><div class="btn-a">Заказать презентацию</div><div class="btn-b">Смотреть демо</div></div>
+          <div class="h-stats">
+            <div><b>×10</b><span>ДЕШЕВЛЕ ЖЕЛЕЗА</span></div>
+            <div><b>1 ДЕНЬ</b><span>НА ЗАПУСК</span></div>
+            <div><b>24/7</b><span>ОПЕРАТОРЫ НА СВЯЗИ</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="p-top"><span class="t">ДИСПЕТЧЕРСКАЯ · ВЪЕЗД A1</span><span class="live"><i></i>LIVE</span></div>
+          <div class="cam">
+            <img src="../img/cam-entrance.png" alt="">
+            <div class="hud"></div>
+            <div class="cam-id">CAM-01 · 21:47:03</div>
+            <div class="plate">А 348 МР 77 ✓</div>
+          </div>
+          <div class="rows">
+            <div class="row"><b>В 512 КХ 199</b><span>21:46 · въезд</span><span class="ok">распознан</span></div>
+            <div class="row"><b>Е 090 ТУ 50</b><span>21:44 · выезд</span><span class="pay">оплачено · 320 ₽</span></div>
+            <div class="row"><b>М 777 ОР 97</b><span>21:41 · абонемент</span><span class="ok">пропущен</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="mini">
+      <div class="m-cap">ВНУТРЕННЯЯ СТРАНИЦА · ТАРИФЫ</div>
+      <div class="m-body">
+        <h4>Тарифы и функционал</h4>
+        <div class="tarif"><span>Бесплатный</span><b>0 ₽</b></div>
+        <div class="tarif"><span>Стандартный</span><b>30 000 ₽/мес</b></div>
+        <div class="tarif"><span>Расширенный</span><b>40 000 ₽/мес</b></div>
+        <div class="tarif vip"><span>VIP · white label</span><b>индивидуально</b></div>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="m-cap">РАЗДЕЛ · БЛОГ</div>
+      <div class="m-body">
+        <div class="bpost"><div class="bp-tag">ГАЙД</div><h5>Как открыть платную парковку и не потратить 2,5 млн на паркоматы</h5><div class="bp-meta">12 мин · Экономика</div></div>
+        <div class="bpost"><div class="bp-tag">ТЕХНОЛОГИИ</div><h5>Как нейросеть видит номер: разбор распознавания</h5><div class="bp-meta">8 мин · Под капотом</div></div>
+        <div class="bpost"><div class="bp-tag">КЕЙС</div><h5>Парковка ТЦ перешла в облако за один день</h5><div class="bp-meta">6 мин · Кейсы</div></div>
+      </div>
+    </div>
+    <div class="mini dna">
+      <div class="m-cap">ДНК КОНЦЕПЦИИ</div>
+      <div class="m-body">
+        <div class="chips">
+          <div class="chip" style="background:#0B0E11"><span>#0B0E11</span></div>
+          <div class="chip" style="background:#10161B"><span>#10161B</span></div>
+          <div class="chip" style="background:#C6F135"><span style="color:#0B0E11">#C6F135</span></div>
+          <div class="chip" style="background:#E8ECEF"><span style="color:#0B0E11">#E8ECEF</span></div>
+        </div>
+        <div class="type-spec">
+          <div class="big">Tektur · 700</div>
+          <div class="small">Golos Text — текст и интерфейс. JetBrains Mono — номера, время, деньги: всё «живое» набрано моноширинным, как в настоящей диспетчерской.</div>
+          <div class="mono">JETBRAINS MONO · А 348 МР 77</div>
+        </div>
+        <div class="motion">
+          <div class="m-t">MOTION</div>
+          <ul>
+            <li>цифры-каунтеры набегают при скролле</li>
+            <li>пульс LIVE-метки, тикер событий въезд/выезд</li>
+            <li>панель диспетчера «оживает» карточка за карточкой</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
